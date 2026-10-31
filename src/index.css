@@ -1,0 +1,289 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #f4f4f5;
+  --card-foreground: #09090b;
+  --border: #e4e4e7;
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #27272a;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #fafafa;
+  --card: #09090b;
+  --card-foreground: #fafafa;
+  --border: #27272a;
+  --primary: #fafafa;
+  --primary-foreground: #18181b;
+  --muted: #18181b;
+  --muted-foreground: #a1a1aa;
+  --accent: #e4e4e7;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Sleek Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #71717a;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Touch Momentum Scrolling Container */
+.touch-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+/* Monochrome Grid Dot Pattern */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.light .bg-grid-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@layer components {
+  /* Glowing Glass Card */
+  .glass-card {
+    background: rgba(9, 9, 11, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+  }
+
+  .light .glass-card {
+    background: rgba(255, 255, 255, 0.88);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.06);
+  }
+
+  .glow-border {
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.12);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+  }
+
+  /* Spacious Dock Track Bar with full length dynamic fill */
+  .dock-track-bar {
+    width: 100%;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+    padding: 4px 6px;
+    border-radius: 18px;
+    background: rgba(9, 9, 11, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(0, 0, 0, 0.45);
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  @media (min-width: 640px) {
+    .dock-track-bar {
+      min-height: 54px;
+      gap: 6px;
+      padding: 5px 8px;
+      border-radius: 20px;
+    }
+  }
+
+  /* Responsive Expanding Dock Pill Button - Dynamic Full Width Fill */
+  .dock-pill {
+    position: relative;
+    display: inline-flex;
+    flex: 1 1 0px;
+    min-width: max-content;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 34px;
+    padding: 0 12px;
+    border-radius: 12px;
+    font-family: var(--font-mono, monospace);
+    font-size: 11px;
+    font-weight: 500;
+    color: #a1a1aa;
+    background: transparent;
+    border: 1px solid transparent;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+    touch-action: manipulation;
+    transition: flex 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25),
+                height 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25),
+                padding 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25),
+                transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25),
+                background-color 0.2s ease,
+                color 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25);
+    transform-origin: center center;
+    will-change: height, transform, box-shadow;
+  }
+
+  @media (min-width: 640px) {
+    .dock-pill {
+      height: 38px;
+      padding: 0 14px;
+      border-radius: 14px;
+      font-size: 12px;
+      gap: 8px;
+    }
+  }
+
+  /* Active Selected State: Fills up dynamically with full white capsule */
+  .dock-pill.active {
+    flex: 1.2 1 0px;
+    height: 38px;
+    padding: 0 16px;
+    color: #000000;
+    background: #ffffff;
+    border-color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 4px 16px -2px rgba(255, 255, 255, 0.3), 0 0 14px rgba(255, 255, 255, 0.4);
+    transform: scale(1.01);
+    z-index: 10;
+  }
+
+  @media (min-width: 640px) {
+    .dock-pill.active {
+      height: 42px;
+      padding: 0 18px;
+      box-shadow: 0 6px 20px -2px rgba(255, 255, 255, 0.3), 0 0 18px rgba(255, 255, 255, 0.4);
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* Desktop-only Hover States to prevent sticky hover on touch devices */
+@media (hover: hover) and (pointer: fine) {
+  .dock-pill:hover:not(.active) {
+    height: 44px;
+    padding: 0 16px;
+    color: #ffffff;
+    background: rgba(39, 39, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 24px -2px rgba(0, 0, 0, 0.7), 0 0 16px 2px rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px) scale(1.05);
+    z-index: 20;
+  }
+
+  .dock-pill.active:hover {
+    transform: translateY(-2px) scale(1.07);
+    box-shadow: 0 10px 28px -2px rgba(255, 255, 255, 0.45), 0 0 22px rgba(255, 255, 255, 0.55);
+    z-index: 30;
+  }
+
+  .dock-nav-item:hover {
+    transform: translateY(-5px) scale(1.18);
+    box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.7), 
+                0 0 22px 4px rgba(255, 255, 255, 0.3);
+    z-index: 40;
+  }
+
+  .spring-button:hover {
+    transform: translateY(-3px) scale(1.12);
+    box-shadow: 0 10px 24px -3px rgba(0, 0, 0, 0.6), 
+                0 0 18px 2px rgba(255, 255, 255, 0.25);
+    z-index: 30;
+  }
+}
+
+.dock-pill:active {
+  transform: scale(0.97);
+  transition-duration: 0.08s;
+}
+
+/* Ultra-Smooth macOS Dock Spring Magnification */
+.dock-nav-item {
+  position: relative;
+  touch-action: manipulation;
+  transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.25), 
+              background-color 0.22s ease, 
+              box-shadow 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.25), 
+              color 0.2s ease,
+              border-color 0.22s ease;
+  transform-origin: center center;
+  will-change: transform, box-shadow;
+}
+
+.dock-nav-item:active {
+  transform: translateY(-1px) scale(1.05);
+  transition-duration: 0.1s;
+}
+
+/* Smooth Interactive Spring Button */
+.spring-button {
+  touch-action: manipulation;
+  transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1.25), 
+              box-shadow 0.25s ease, 
+              background-color 0.2s ease,
+              border-color 0.2s ease;
+  transform-origin: center center;
+  will-change: transform, box-shadow;
+}
+
+.spring-button:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+@keyframes waveGrow {
+  0% { transform: scale(0.4); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-wave-grow {
+  animation: waveGrow 0.25s cubic-bezier(0, 0, 0.2, 1);
+}
